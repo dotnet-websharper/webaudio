@@ -297,7 +297,7 @@ module Definition =
             "highpass"
             "bandpass"
             "lowshelf"
-            "highself"
+            "highshelf"
             "peaking"
             "notch"
             "allpass"
