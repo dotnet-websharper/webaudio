@@ -8,7 +8,7 @@ module Definition =
 
     let O = T<unit>
     let Error = T<exn>
-    let Ulong = T<uint32>
+    let Ulong = T<int>
     let Event = T<Event>
 
     let AudioNode = Type.New ()
