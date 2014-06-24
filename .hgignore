@@ -1,0 +1,6 @@
+syntax: glob
+WebAudio/bin/*
+WebAudio/obj/*
+build/*
+packages/*
+*.suo
