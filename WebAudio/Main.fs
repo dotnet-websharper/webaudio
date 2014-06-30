@@ -186,7 +186,10 @@ module Definition =
 
         Class "AudioContext"
         |=> Inherits T<EventTarget>
-        |+> [ Constructor O ]
+        |+> [
+            Constructor O 
+            |> WithInline "new (window.AudioContext || window.webkitAudioContext)()"
+        ]
         |+> Protocol [
             "destination" =? AudioDestinationNode
             |> WithComment "An AudioDestinationNode with a single input representing the final destination for all audio."
