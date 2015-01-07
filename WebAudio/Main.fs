@@ -3,8 +3,8 @@ namespace WebAudio
 open IntelliFactory.WebSharper.InterfaceGenerator
 
 module Definition =
-    open IntelliFactory.WebSharper.Html5
-    open IntelliFactory.WebSharper.Dom
+    open IntelliFactory.WebSharper
+    open IntelliFactory.WebSharper.JavaScript.Dom
 
     let O = T<unit>
     let Error = T<exn>
@@ -70,12 +70,12 @@ module Definition =
             "numberOfChannels" =? T<int>
             |> WithComment "The number of discrete audio channels."
 
-            "getChannelData" => Ulong?channel ^-> T<Float32Array>
+            "getChannelData" => Ulong?channel ^-> T<JavaScript.Float32Array>
             |> WithComment "Returns the Float32Array representing the PCM audio data for the specific channel."
 
-            "copyFromChannel" => (T<Float32Array>?destination * T<int>?channelNumber * !? Ulong?startInChannel) ^-> O
+            "copyFromChannel" => (T<JavaScript.Float32Array>?destination * T<int>?channelNumber * !? Ulong?startInChannel) ^-> O
             |> WithComment "Copies the samples from the specified channel of the AudioBuffer to the destination array."
-            "copyToChannel" => (T<Float32Array>?source * T<int>?channelNumber * !? Ulong?startInChannel) ^-> O
+            "copyToChannel" => (T<JavaScript.Float32Array>?source * T<int>?channelNumber * !? Ulong?startInChannel) ^-> O
             |> WithComment "Copies the samples to the specified channel of the , from the source array."
         ]
 
@@ -96,7 +96,7 @@ module Definition =
 
             "setTargetAtTime" => (T<float>?target * T<double>?startTime * T<double>?timeConstant) ^-> O
             |> WithComment "Start exponentially approaching the target value at the given time with a rate having the given time constant."
-            "setValueCurveAtTime" => (T<Float32Array>?values * T<double>?startTime * T<double>?duration) ^-> O
+            "setValueCurveAtTime" => (T<JavaScript.Float32Array>?values * T<double>?startTime * T<double>?duration) ^-> O
             |> WithComment "Sets an array of arbitrary parameter values starting at the given time for the given duration."
             "cancelScheduledValues" => T<double>?startTime ^-> O
             |> WithComment "Cancels all scheduled parameter changes with times greater than or equal to startTime."
@@ -203,15 +203,15 @@ module Definition =
             "createBuffer" => (Ulong?numberOfChannels * Ulong?length * T<float>?sampleRate) ^-> AudioBuffer
             |> WithComment "Creates an AudioBuffer of the given size. The audio data in the buffer will be zero-initialized (silent).\
                             An NOT_SUPPORTED_ERR exception is thrown if any of the arguments is negative, zero, or outside its nominal range."
-            "decodeAudioData" => (T<ArrayBuffer>?audioData * DecodesuccessCallback?successCallback * !? ErrorCallback?errorCallback) ^-> O
+            "decodeAudioData" => (T<JavaScript.ArrayBuffer>?audioData * DecodesuccessCallback?successCallback * !? ErrorCallback?errorCallback) ^-> O
             |> WithComment "Asynchronously decodes the audio file data contained in the ArrayBuffer."
-            //"decodeAudioData" => (T<ArrayBuffer>?audioData * !? DecodesuccessCallback?successCallback * !? ErrorCallback?errorCallback) ^-> Promise<AudioBuffer>
+            //"decodeAudioData" => (T<JavaScript.ArrayBuffer>?audioData * !? DecodesuccessCallback?successCallback * !? ErrorCallback?errorCallback) ^-> Promise<AudioBuffer>
 
             "createBufferSource" => O ^-> AudioBufferSourceNode
-            "createMediaElementSource" => T<HTMLMediaElement>?mediaElement ^-> MediaElementAudioSourceNode
+            "createMediaElementSource" => T<JavaScript.HTMLMediaElement>?mediaElement ^-> MediaElementAudioSourceNode
             |> WithComment "Creates a MediaElementAudioSourceNode given an HTMLMediaElement. As a consequence of calling this method, audio playback \
                             from the HTMLMediaElement will be re-routed into the processing graph of the AudioContext."
-            "createMediaStreamSource" => T<MediaStream>?mediaStream ^-> MediaStreamAudioSourceNode
+            "createMediaStreamSource" => T<JavaScript.MediaStream>?mediaStream ^-> MediaStreamAudioSourceNode
             "createMediaStreamDestination" => O ^-> MediaStreamAudioDestinationNode
 
             "createScriptProcessor" => (!? Ulong?bufferSize * !? Ulong?numberOfInputChannels * !? Ulong?numberOfOutputChannels) ^-> ScriptProcessorNode
@@ -233,7 +233,7 @@ module Definition =
 
             "createDynamicCompressor" => O ^-> DynamicsCompressorNode
             "createOscillator" => O ^-> OscillatorNode
-            "createPeriodicWave" => (T<Float32Array>?real * T<Float32Array>?imag) ^-> PeriodicWave
+            "createPeriodicWave" => (T<JavaScript.Float32Array>?real * T<JavaScript.Float32Array>?imag) ^-> PeriodicWave
             |> WithComment "Creates a PeriodicWave representing a waveform containing arbitrary harmonic content. The real and imag parameters are of \
                             type Float32Array of equal lengths greater than zero and less than or equal to 4096 or an INDEX_SIZE_ERR exception must be thrown."
         ]
@@ -326,13 +326,13 @@ module Definition =
         |=> Inherits AudioNode
         |=> AnalyserNode
         |+> Protocol [
-            "getFloatFrequencyData" => T<Float32Array>?array ^-> O
+            "getFloatFrequencyData" => T<JavaScript.Float32Array>?array ^-> O
             |> WithComment "Copies the current frequency data into the passed floating-point array."
-            "getByteFrequencyData" => T<Uint8Array>?array ^-> O
+            "getByteFrequencyData" => T<JavaScript.Uint8Array>?array ^-> O
             |> WithComment "Copies the current frequency data into the passed unsigned byte array."
-            "getFloatTimeDomainData" => T<Float32Array>?array ^-> O
+            "getFloatTimeDomainData" => T<JavaScript.Float32Array>?array ^-> O
             |> WithComment "Copies the current time-domain (waveform) data into the passed floating-point array."
-            "getByteTimeDomainData" => T<Uint8Array>?array ^-> O
+            "getByteTimeDomainData" => T<JavaScript.Uint8Array>?array ^-> O
             |> WithComment "Copies the current time-domain (waveform) data into the passed unsigned byte array."
 
             "fftSize" =@ Ulong
@@ -404,7 +404,7 @@ module Definition =
             "Q" =? AudioParam
             "gain" =? AudioParam
 
-            "getFrequencyResponse" => (T<Float32Array>?frequencyHz * T<Float32Array>?magResponse * T<Float32Array>?phaseResponse) ^-> O
+            "getFrequencyResponse" => (T<JavaScript.Float32Array>?frequencyHz * T<JavaScript.Float32Array>?magResponse * T<JavaScript.Float32Array>?phaseResponse) ^-> O
             |> WithComment "Given the current filter parameter settings, calculates the frequency response for the specified frequencies."
         ]
 
@@ -420,7 +420,7 @@ module Definition =
         |=> Inherits AudioNode
         |=> WaveShaperNode
         |+> Protocol [
-            "curve" =@ T<Float32Array>
+            "curve" =@ T<JavaScript.Float32Array>
             |> WithComment "The shaping curve used for the waveshaping effect. The input signal is nominally within the range -1 -> +1."
             "oversample" =@ OverSampleType
             |> WithComment "Specifies what type of oversampling (if any) should be used when applying the shaping curve."
@@ -472,7 +472,7 @@ module Definition =
         |=> Inherits AudioNode
         |=> MediaStreamAudioDestinationNode
         |+> Protocol [
-            "stream" =@ T<MediaStream>
+            "stream" =@ T<JavaScript.MediaStream>
             |> WithComment "A MediaStream containing a single AudioMediaStreamTrack with the same number of channels as the node itself."
         ]
 
@@ -491,7 +491,7 @@ module Definition =
 
     let Assembly = 
         Assembly [
-            Namespace "IntelliFactory.WebSharper.Html5" [
+            Namespace "IntelliFactory.WebSharper.JavaScript" [
                 OfflineAudioCompletitionEvent
                 AudioDestinationNodeClass
                 AudioListener
