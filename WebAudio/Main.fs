@@ -1,10 +1,10 @@
 namespace WebAudio
 
-open IntelliFactory.WebSharper.InterfaceGenerator
+open WebSharper.InterfaceGenerator
 
 module Definition =
-    open IntelliFactory.WebSharper
-    open IntelliFactory.WebSharper.JavaScript.Dom
+    open WebSharper
+    open WebSharper.JavaScript.Dom
 
     let O = T<unit>
     let Error = T<exn>
@@ -30,7 +30,7 @@ module Definition =
     let OfflineAudioCompletitionEvent = 
         Class "OfflineAudioCompletitionEvent"
         |=> Inherits Event
-        |+> Protocol [
+        |+> Instance [
             "renderedBuffer" =? AudioBuffer
         ]
 
@@ -38,13 +38,13 @@ module Definition =
         Class "AudioDestinationNode"
         |=> Inherits AudioNode
         |=> AudioDestinationNode
-        |+> Protocol [
+        |+> Instance [
             "maxChannelCount" =? Ulong
         ]
 
     let AudioListener = 
         Class "AudioListener"
-        |+> Protocol [
+        |+> Instance [
             "dopplerFactor" =@ T<double>
             |> WithComment "A constant used to determine the amount of pitch shift to use when rendering a doppler effect."
             "speedOfSound" =@ T<double>
@@ -60,7 +60,7 @@ module Definition =
     let AudioBufferClass = 
         Class "AudioBuffer"
         |=> AudioBuffer
-        |+> Protocol [
+        |+> Instance [
             "sampleRate" =? T<float>
             |> WithComment "The sample-rate for the PCM audio data in samples per second."
             "length" =? T<int>
@@ -81,7 +81,7 @@ module Definition =
 
     let AudioParam =
         Class "AudioParam"
-        |+> Protocol [
+        |+> Instance [
             "value" =@ T<float>
             |> WithComment "The parameter's floating-point value."
             "defaultValue" =? T<float>
@@ -105,7 +105,7 @@ module Definition =
     let AudioBufferSourceNode = 
         Class "AudioBufferSourceNode"
         |=> Inherits AudioNode
-        |+> Protocol [
+        |+> Instance [
             "buffer" =@ AudioBuffer
             |> WithComment "Represents the audio asset to be played."
             "playbackRate" =? AudioParam
@@ -129,7 +129,7 @@ module Definition =
     let GainNode = 
         Class "GainNode"
         |=> Inherits AudioNode
-        |+> Protocol [
+        |+> Instance [
             "gain" =? AudioParam
             |> WithComment "Represents the amount of gain to apply. "
         ]
@@ -137,7 +137,7 @@ module Definition =
     let DelayNode = 
         Class "DelayNode"
         |=> Inherits AudioNode
-        |+> Protocol [
+        |+> Instance [
             "delayTime" =? AudioParam
             |> WithComment "Represents the amount of delay in seconds to apply"
         ]
@@ -161,7 +161,7 @@ module Definition =
     let  AudioProcessingEvent =
         Class "AudioProcessingEvent" 
         |=> Inherits Event
-        |+> Protocol [
+        |+> Instance [
             "playbackTime" =? T<double>
             |> WithComment "The time when the audio will be played in the same time coordinate system as the AudioContext's currentTime."
             "inputBuffer" =? AudioBuffer
@@ -173,7 +173,7 @@ module Definition =
     let ScriptProcessorNode = 
         Class "ScriptProcessorNode"
         |=> Inherits AudioNode
-        |+> Protocol [
+        |+> Instance [
             "onaudioprocess" =@ AudioProcessingEvent ^-> O 
 
             "bufferSize" =? T<int>
@@ -186,11 +186,11 @@ module Definition =
 
         Class "AudioContext"
         |=> Inherits T<EventTarget>
-        |+> [
+        |+> Static [
             Constructor O 
             |> WithInline "new (window.AudioContext || window.webkitAudioContext)()"
         ]
-        |+> Protocol [
+        |+> Instance [
             "destination" =? AudioDestinationNode
             |> WithComment "An AudioDestinationNode with a single input representing the final destination for all audio."
             "sampleRate" =? T<float>
@@ -242,7 +242,7 @@ module Definition =
         Class "AudioNode"
         |=> AudioNode
         |=> Inherits T<EventTarget>
-        |+> Protocol [
+        |+> Instance [
             "connect" => (AudioNode?destination * !? Ulong?output * !? Ulong?input) ^-> O
             |> WithComment "Connects the AudioNode to an AudioParam, controlling the parameter value with an audio-rate signal."
             "connect" => (AudioParam?destination * !? Ulong?output) ^-> O
@@ -269,7 +269,7 @@ module Definition =
         Class "ConvolverNode"
         |=> Inherits AudioNode
         |=> ConvolverNode
-        |+> Protocol [
+        |+> Instance [
             "buffer" =@ AudioBuffer
             |> WithComment "A mono, stereo, or 4-channel AudioBuffer containing the (possibly multi-channel) impulse response used by the ConvolverNode."
             "normalize" =@ T<bool>
@@ -293,7 +293,7 @@ module Definition =
         Class "PannerNode"
         |=> Inherits AudioNode
         |=> PannerNode
-        |+> Protocol [
+        |+> Instance [
             "panningModel" =@ PanningModelType
             |> WithComment "Specifies the panning model used by this PannerNode."
 
@@ -325,7 +325,7 @@ module Definition =
         Class "AnalyserNode"
         |=> Inherits AudioNode
         |=> AnalyserNode
-        |+> Protocol [
+        |+> Instance [
             "getFloatFrequencyData" => T<JavaScript.Float32Array>?array ^-> O
             |> WithComment "Copies the current frequency data into the passed floating-point array."
             "getByteFrequencyData" => T<JavaScript.Uint8Array>?array ^-> O
@@ -363,7 +363,7 @@ module Definition =
         Class "DynamicsCompressorNode"
         |=> Inherits AudioNode
         |=> DynamicsCompressorNode
-        |+> Protocol [
+        |+> Instance [
             "threshold" =? AudioParam
             |> WithComment "The decibel value above which the compression will start taking effect."
             "knee" =? AudioParam
@@ -394,7 +394,7 @@ module Definition =
         Class "BiquadFilterNode"
         |=> Inherits AudioNode
         |=> BiquadFilterNode
-        |+> Protocol [
+        |+> Instance [
             "type" =@ BiquadFilterType
             |> WithComment "The type of this BiquadFilterNode."
             "frequency" =? AudioParam
@@ -419,7 +419,7 @@ module Definition =
         Class "WaveShaperNode"
         |=> Inherits AudioNode
         |=> WaveShaperNode
-        |+> Protocol [
+        |+> Instance [
             "curve" =@ T<JavaScript.Float32Array>
             |> WithComment "The shaping curve used for the waveshaping effect. The input signal is nominally within the range -1 -> +1."
             "oversample" =@ OverSampleType
@@ -439,7 +439,7 @@ module Definition =
         Class "OscillatorNode"
         |=> Inherits AudioNode
         |=> OscillatorNode
-        |+> Protocol [
+        |+> Instance [
             "type" =@ OscillatorType
             |> WithComment "The shape of the periodic waveform."
             "frequency" =? AudioParam
@@ -471,7 +471,7 @@ module Definition =
         Class "MediaStreamAudioDestinationNode"
         |=> Inherits AudioNode
         |=> MediaStreamAudioDestinationNode
-        |+> Protocol [
+        |+> Instance [
             "stream" =@ T<JavaScript.MediaStream>
             |> WithComment "A MediaStream containing a single AudioMediaStreamTrack with the same number of channels as the node itself."
         ]
@@ -479,10 +479,10 @@ module Definition =
     let OfflineAudioContext =
         Class "OfflineAudioContext"
         |=> Inherits AudioContext
-        |+> [
+        |+> Static [
             Constructor (Ulong?numberOfChannels * Ulong?length * T<float>?sampleRate)
         ]
-        |+> Protocol [
+        |+> Instance [
             "startRendering" => O ^-> O
             |> WithComment "Given the current connections and scheduled changes, starts rendering audio."
             //"startRendering" => O ^-> Promise<AudioBuffer>
