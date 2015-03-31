@@ -2,7 +2,7 @@
 open IntelliFactory.Build
 
 let bt =
-    (BuildTool().PackageId("WebSharper.WebAudio", "3.0-alpha")
+    (BuildTool().PackageId("WebSharper.WebAudio", "3.0")
     |> fun bt -> bt.WithFramework(bt.Framework.Net40))
         .References(fun r -> [r.NuGet("WebSharper.WebRTC").Reference()])
 
