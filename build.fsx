@@ -2,15 +2,16 @@
 open IntelliFactory.Build
 
 let bt =
-    (BuildTool().PackageId("WebSharper.WebAudio", "3.0")
-    |> fun bt -> bt.WithFramework(bt.Framework.Net40))
-        .References(fun r -> [r.NuGet("WebSharper.WebRTC").Reference()])
+    BuildTool().PackageId("WebSharper.WebAudio")
+        .VersionFrom("WebSharper")
+        .WithFramework(fun fw -> fw.Net40)
 
 
 let main =
     (bt.WebSharper.Extension("IntelliFactory.WebSharper.WebAudio")
     |> FSharpConfig.BaseDir.Custom "WebAudio")
         .SourcesFromProject("WebAudio.fsproj")
+        .References(fun r -> [r.NuGet("WebSharper.WebRTC").Reference()])
 
 (*let test =
     (bt.WebSharper.BundleWebsite("IntelliFactory.WebSharper.WebAudio.Tests")
