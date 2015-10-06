@@ -12,7 +12,10 @@ let main =
     (bt.WebSharper.Extension("IntelliFactory.WebSharper.WebAudio")
     |> FSharpConfig.BaseDir.Custom "WebAudio")
         .SourcesFromProject("WebAudio.fsproj")
-        .References(fun r -> [r.NuGet("WebSharper.WebRTC").Reference()])
+        .References(fun r ->
+            [
+                r.NuGet("WebSharper.WebRTC").ForceFoundVersion().Reference()
+            ])
 
 (*let test =
     (bt.WebSharper.BundleWebsite("IntelliFactory.WebSharper.WebAudio.Tests")
