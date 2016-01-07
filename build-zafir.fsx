@@ -14,7 +14,7 @@ let main =
         .SourcesFromProject("WebAudio.fsproj")
         .References(fun r ->
             [
-                r.NuGet("WebSharper.WebRTC").Latest(true).ForceFoundVersion().Reference()
+                r.NuGet("Zafir.WebRTC").Latest(true).ForceFoundVersion().Reference()
             ])
 
 (*let test =
