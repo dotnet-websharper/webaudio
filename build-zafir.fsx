@@ -9,8 +9,7 @@ let bt =
 
 
 let main =
-    (bt.Zafir.Extension("WebSharper.WebAudio")
-    |> FSharpConfig.BaseDir.Custom "WebAudio")
+    bt.Zafir.Extension("WebSharper.WebAudio", directory = "WebAudio")
         .SourcesFromProject("WebAudio.fsproj")
         .References(fun r ->
             [
@@ -18,8 +17,7 @@ let main =
             ])
 
 (*let test =
-    (bt.WebSharper.BundleWebsite("IntelliFactory.WebSharper.WebAudio.Tests")
-    |> FSharpConfig.BaseDir.Custom "Tests")
+    bt.WebSharper.BundleWebsite("IntelliFactory.WebSharper.WebAudio.Tests", directory = "Tests")
         .SourcesFromProject("Tests.fsproj")
         .References(fun r -> [r.Project main])*)
 
