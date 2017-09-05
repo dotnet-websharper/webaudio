@@ -2,18 +2,18 @@
 open IntelliFactory.Build
 
 let bt =
-    BuildTool().PackageId("Zafir.WebAudio")
-        .VersionFrom("Zafir")
+    BuildTool().PackageId("WebSharper.WebAudio")
+        .VersionFrom("WebSharper")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun fw -> fw.Net40)
 
 
 let main =
-    bt.Zafir.Extension("WebSharper.WebAudio", directory = "WebAudio")
+    bt.WebSharper4.Extension("WebSharper.WebAudio", directory = "WebAudio")
         .SourcesFromProject("WebAudio.fsproj")
         .References(fun r ->
             [
-                r.NuGet("Zafir.WebRTC").Latest(true).ForceFoundVersion().Reference()
+                r.NuGet("WebSharper.WebRTC").Latest(true).ForceFoundVersion().Reference()
             ])
 
 (*let test =
@@ -28,7 +28,7 @@ bt.Solution [
     bt.NuGet.CreatePackage()
         .Configure(fun c ->
             { c with
-                Title = Some "Zafir.WebAudio"
+                Title = Some "WebSharper.WebAudio"
                 LicenseUrl = Some "http://websharper.com/licensing"
                 ProjectUrl = Some "https://bitbucket.org/intellifactory/websharper.webaudio"
                 Description = "WebSharper Extensions for WebAudio"

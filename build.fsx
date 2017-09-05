@@ -3,7 +3,7 @@ open IntelliFactory.Build
 
 let bt =
     BuildTool().PackageId("WebSharper.WebAudio")
-        .VersionFrom("WebSharper")
+        .VersionFrom("WebSharper", versionSpec = "(,4.0)")
         .WithFSharpVersion(FSharpVersion.FSharp30)
         .WithFramework(fun fw -> fw.Net40)
 
@@ -13,7 +13,7 @@ let main =
         .SourcesFromProject("WebAudio.fsproj")
         .References(fun r ->
             [
-                r.NuGet("WebSharper.WebRTC").ForceFoundVersion().Reference()
+                r.NuGet("WebSharper.WebRTC").Version("(,4.0)").ForceFoundVersion().Reference()
             ])
 
 (*let test =
