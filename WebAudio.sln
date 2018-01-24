@@ -1,22 +1,34 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebAudio", "WebAudio\WebAudio.fsproj", "{011B8344-C681-4780-BACD-3A6004759513}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebSharper.WebAudio", "WebSharper.WebAudio\WebSharper.WebAudio.fsproj", "{6A124057-9009-49DA-B080-DE66F3B01E35}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{011B8344-C681-4780-BACD-3A6004759513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{011B8344-C681-4780-BACD-3A6004759513}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{011B8344-C681-4780-BACD-3A6004759513}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{011B8344-C681-4780-BACD-3A6004759513}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Debug|x64.ActiveCfg = Debug|x64
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Debug|x64.Build.0 = Debug|x64
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Debug|x86.ActiveCfg = Debug|x86
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Debug|x86.Build.0 = Debug|x86
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Release|x64.ActiveCfg = Release|x64
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Release|x64.Build.0 = Release|x64
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Release|x86.ActiveCfg = Release|x86
+		{6A124057-9009-49DA-B080-DE66F3B01E35}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

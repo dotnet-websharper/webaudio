@@ -1,0 +1,18 @@
+type file
+id WebSharper.WebAudio
+authors
+    IntelliFactory
+owners
+    IntelliFactory
+licenseUrl http://websharper.com/licensing
+projectUrl https://bitbucket.org/intellifactory/websharper.webaudio
+description
+    WebSharper Extensions for WebAudio
+tags
+    Web JavaScript F# C#
+files
+    ../WebSharper.WebAudio/bin/Release/netstandard2.0/WebSharper.WebAudio.dll ==> lib/netstandard2.0
+    ../WebSharper.WebAudio/bin/Release/netstandard2.0/WebSharper.WebAudio.xml ==> lib/netstandard2.0
+dependencies
+        WebSharper ~> LOCKEDVERSION/3
+        WebSharper.WebRTC ~> LOCKEDVERSION/3
