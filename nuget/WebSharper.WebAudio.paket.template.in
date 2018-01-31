@@ -11,6 +11,8 @@ description
 tags
     Web JavaScript F# C#
 files
+    ../WebSharper.WebAudio/bin/Release/netstandard2.0/WebSharper.WebAudio.dll ==> lib/net461
+    ../WebSharper.WebAudio/bin/Release/netstandard2.0/WebSharper.WebAudio.xml ==> lib/net461
     ../WebSharper.WebAudio/bin/Release/netstandard2.0/WebSharper.WebAudio.dll ==> lib/netstandard2.0
     ../WebSharper.WebAudio/bin/Release/netstandard2.0/WebSharper.WebAudio.xml ==> lib/netstandard2.0
 dependencies
