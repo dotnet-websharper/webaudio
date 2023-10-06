@@ -319,6 +319,10 @@ module Definition =
     let AudioContext = 
         let AudioTimestamp = 
             Class "AudioTimestamp"
+            |+> Instance [
+                "contextTime" =? T<float>
+                "performanceTime" =? T<float>
+            ]
         Class "AudioContext"
         |=> Inherits BaseAudioContext
         |=> Nested [AudioTimestamp]
